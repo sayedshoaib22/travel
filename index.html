@@ -1,243 +1,958 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✈️Travel website✈️</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sheetal Online Fashion — Quality Women's Apparel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --burgundy: #7B1D3A;
+    --burgundy-dark: #56122A;
+    --gold: #C9993A;
+    --gold-light: #E8C97A;
+    --cream: #FBF6F0;
+    --warm-white: #FFFCF8;
+    --dark: #1C0810;
+    --text: #3A1828;
+    --muted: #8A6878;
+    --border: #E8D8CC;
+    --card-bg: #FFFFFF;
+    --sidebar-bg: #2A0D1C;
+  }
 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ─── ANNOUNCEMENT BAR ─── */
+  .announce-bar {
+    background: var(--burgundy-dark);
+    color: var(--gold-light);
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    padding: 8px 20px;
+    font-weight: 500;
+  }
+  .announce-bar span { margin: 0 18px; }
+  .announce-bar span::before { content: '✦  '; }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(123,29,58,.08);
+  }
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: var(--burgundy);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-light);
+    font-size: 20px;
+  }
+  .logo-text { line-height: 1; }
+  .logo-text .brand { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--burgundy); }
+  .logo-text .sub { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+  nav { display: flex; align-items: center; gap: 32px; }
+  nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .5px;
+    padding-bottom: 3px;
+    border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  nav a:hover { color: var(--burgundy); border-color: var(--gold); }
+
+  .header-search {
+    display: flex;
+    align-items: center;
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: 28px;
+    padding: 8px 18px;
+    gap: 8px;
+    transition: border-color .2s;
+  }
+  .header-search:focus-within { border-color: var(--burgundy); }
+  .header-search input {
+    border: none; background: transparent; font-family: 'DM Sans', sans-serif;
+    font-size: 14px; color: var(--text); outline: none; width: 200px;
+  }
+  .header-search input::placeholder { color: var(--muted); }
+  .search-icon { color: var(--muted); font-size: 16px; cursor: pointer; }
+  .search-icon:hover { color: var(--burgundy); }
+
+  /* ─── HERO CAROUSEL ─── */
+  .hero { position: relative; overflow: hidden; background: var(--dark); }
+  .hero-track { display: flex; transition: transform .6s cubic-bezier(.77,0,.18,1); }
+  .hero-slide {
+    min-width: 100%;
+    position: relative;
+    height: 520px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-slide img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(.45);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 80px;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    color: var(--gold);
+    letter-spacing: 3px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+  .hero-title em { color: var(--gold-light); font-style: italic; }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold);
+    color: var(--dark);
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: .5px;
+    text-decoration: none;
+    transition: background .2s, transform .2s;
+  }
+  .hero-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .hero-nav {
+    position: absolute;
+    bottom: 28px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 3;
+  }
+  .hero-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,.4);
+    cursor: pointer; transition: all .3s;
+    border: none;
+  }
+  .hero-dot.active { background: var(--gold); width: 24px; border-radius: 4px; }
+  .hero-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    z-index: 3; background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.25);
+    color: #fff; width: 44px; height: 44px;
+    border-radius: 50%; cursor: pointer;
+    font-size: 18px; display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+    transition: background .2s;
+  }
+  .hero-arrow:hover { background: rgba(201,153,58,.5); }
+  .hero-arrow.prev { left: 24px; }
+  .hero-arrow.next { right: 24px; }
+
+  /* ─── CATEGORY TILES ─── */
+  .cats-section { max-width: 1400px; margin: -56px auto 0; padding: 0 32px; position: relative; z-index: 10; }
+  .cats-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 12px;
+  }
+  .cat-tile {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(123,29,58,.12);
+    cursor: pointer;
+    transition: transform .25s, box-shadow .25s;
+    text-decoration: none;
+  }
+  .cat-tile:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(123,29,58,.18); }
+  .cat-tile img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+  .cat-tile-label {
+    padding: 8px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    text-align: center;
+    letter-spacing: .3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ─── PROMO BADGES ─── */
+  .perks { background: var(--burgundy); padding: 18px 32px; margin-top: 40px; }
+  .perks-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: center; gap: 60px; }
+  .perk { display: flex; align-items: center; gap: 10px; color: #fff; }
+  .perk-icon { font-size: 22px; }
+  .perk-text strong { display: block; font-size: 13px; font-weight: 600; letter-spacing: .5px; }
+  .perk-text span { font-size: 11px; color: rgba(255,255,255,.7); }
+
+  /* ─── MAIN LAYOUT ─── */
+  .main-layout {
+    max-width: 1400px; margin: 40px auto; padding: 0 32px;
+    display: grid; grid-template-columns: 260px 1fr; gap: 32px; align-items: start;
+  }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar {
+    background: var(--sidebar-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    position: sticky; top: 88px;
+  }
+  .sidebar-header {
+    background: var(--burgundy);
+    padding: 20px 22px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .sidebar-header h3 { color: #fff; font-size: 15px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .sidebar-search {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .sidebar-search input {
+    width: 100%;
+    background: rgba(255,255,255,.08);
+    border: 1.5px solid rgba(255,255,255,.12);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    outline: none;
+  }
+  .sidebar-search input::placeholder { color: rgba(255,255,255,.4); }
+  .sidebar-search input:focus { border-color: var(--gold); }
+
+  .filter-section { padding: 0 0 4px; }
+  .filter-label {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .filter-label::after { content: '▾'; font-size: 12px; }
+  .filter-list { list-style: none; padding: 0 12px 12px; }
+  .filter-list li a {
+    display: block;
+    padding: 7px 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background .15s, color .15s;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .filter-list li a:hover, .filter-list li a.active {
+    background: rgba(201,153,58,.18);
+    color: var(--gold-light);
+  }
+  .filter-list li a.active::before { content: '● '; font-size: 9px; }
+  .filter-divider { height: 1px; background: rgba(255,255,255,.07); margin: 2px 16px; }
+
+  /* ─── PRODUCT SECTION ─── */
+  .products-area {}
+  .products-toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .products-title { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--burgundy); }
+  .products-title span { color: var(--muted); font-size: 14px; font-family: 'DM Sans', sans-serif; margin-left: 8px; font-weight: 400; }
+  .sort-select {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    background: var(--warm-white);
+    cursor: pointer;
+    outline: none;
+  }
+  .sort-select:focus { border-color: var(--burgundy); }
+
+  /* ─── PRODUCT GRID ─── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 20px;
+  }
+  .product-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(123,29,58,.07);
+    transition: transform .25s, box-shadow .25s;
+    display: flex; flex-direction: column;
+  }
+  .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(123,29,58,.14); }
+  .product-img-wrap {
+    position: relative; overflow: hidden;
+    aspect-ratio: 3/4;
+  }
+  .product-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .4s;
+  }
+  .product-card:hover .product-img-wrap img { transform: scale(1.06); }
+  .product-badge {
+    position: absolute; top: 10px; left: 10px;
+    background: var(--burgundy);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  .product-body { padding: 14px 14px 16px; flex: 1; display: flex; flex-direction: column; }
+  .product-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 8px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .product-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--burgundy);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .product-price small { font-size: 12px; font-family: 'DM Sans', sans-serif; color: var(--muted); font-weight: 400; }
+  .product-actions { display: flex; gap: 8px; }
+  .btn-buy {
+    flex: 1;
+    background: var(--burgundy);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: .5px;
+    transition: background .2s;
+    text-decoration: none;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .btn-buy:hover { background: var(--burgundy-dark); }
+  .btn-wa {
+    width: 36px; height: 36px;
+    background: #25D366;
+    border: none; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background .2s;
+    text-decoration: none; flex-shrink: 0;
+  }
+  .btn-wa:hover { background: #128C7E; }
+  .btn-wa svg { width: 18px; height: 18px; fill: #fff; }
+
+  /* ─── PAGINATION ─── */
+  .pagination { display: flex; justify-content: center; gap: 8px; margin: 48px 0 24px; }
+  .page-btn {
+    width: 40px; height: 40px;
+    border-radius: 8px; border: 1.5px solid var(--border);
+    background: var(--warm-white);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: all .2s;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+  }
+  .page-btn:hover, .page-btn.active {
+    background: var(--burgundy); color: #fff; border-color: var(--burgundy);
+  }
+  .page-btn.next-btn {
+    width: auto; padding: 0 20px; gap: 6px;
+  }
+
+  /* ─── AD BANNER ─── */
+  .ad-banner {
+    max-width: 1400px; margin: 0 auto 48px; padding: 0 32px;
+  }
+  .ad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .ad-card {
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(123,29,58,.1);
+    position: relative; cursor: pointer;
+    transition: transform .25s;
+  }
+  .ad-card:hover { transform: translateY(-3px); }
+  .ad-card img { width: 100%; display: block; }
+  .ad-card-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(28,8,16,.8));
+    padding: 32px 18px 18px;
+  }
+  .ad-card-title { color: #fff; font-family: 'Playfair Display', serif; font-size: 16px; }
+  .ad-card-sub { color: var(--gold-light); font-size: 12px; margin-top: 4px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,.7);
+  }
+  .footer-top {
+    max-width: 1400px; margin: 0 auto; padding: 56px 32px 40px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+  }
+  .footer-brand .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: #fff; margin-bottom: 12px;
+  }
+  .footer-brand p { font-size: 13px; line-height: 1.7; max-width: 280px; }
+  .footer-col h4 { color: var(--gold); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 8px; }
+  .footer-col ul li a { color: rgba(255,255,255,.6); text-decoration: none; font-size: 13px; transition: color .2s; }
+  .footer-col ul li a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.08);
+    max-width: 1400px; margin: 0 auto; padding: 20px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: rgba(255,255,255,.4);
+  }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: rgba(255,255,255,.4); text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ─── WHATSAPP FLOAT ─── */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,.4);
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,.5); }
+  .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+
+  @media (max-width: 1100px) {
+    .cats-grid { grid-template-columns: repeat(4, 1fr); }
+    .main-layout { grid-template-columns: 220px 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .ad-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .cats-grid { grid-template-columns: repeat(4, 1fr); }
+    .main-layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    nav { display: none; }
+    .perks-inner { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
 <body>
 
+<!-- Announcement Bar -->
+<div class="announce-bar">
+  <span>Free Shipping PAN India</span>
+  <span>Cash On Delivery Available</span>
+  <span>Easy Returns & Exchange</span>
+</div>
 
-    <header class="header">
-        <a href="#" class="brand">Travel</a>
-        <div class="menu-btn"></div>
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🌸</div>
+      <div class="logo-text">
+        <div class="brand">Sheetal Online Fashion</div>
+        <div class="sub">Quality Women's Apparel</div>
+      </div>
+    </a>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">New Arrivals</a>
+      <a href="#">Collections</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search sarees, kurtis, gowns…">
+    </div>
+  </div>
+</header>
 
-        <div class="navigation">
-            <div class="navigation-items">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#explore">Explore</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#contact">Contact</a>
+<!-- Hero Carousel -->
+<div class="hero">
+  <div class="hero-track" id="heroTrack">
+    <div class="hero-slide">
+      <img src="https://images.meesho.com/images/products/328784931/qjnqm_512.webp" alt="Sarees">
+      <div class="hero-content">
+        <div class="hero-eyebrow">New Collection 2024</div>
+        <h1 class="hero-title">Timeless <em>Sarees</em> for Every Occasion</h1>
+        <a href="#" class="hero-cta">Shop Sarees →</a>
+      </div>
+    </div>
+    <div class="hero-slide">
+      <img src="https://images.meesho.com/images/products/158544963/hvvtv_512.webp" alt="Kurtis">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Trending Now</div>
+        <h1 class="hero-title">Elegant <em>Kurtis</em> for the Modern Woman</h1>
+        <a href="#" class="hero-cta">Explore Kurtis →</a>
+      </div>
+    </div>
+    <div class="hero-slide">
+      <img src="https://images.meesho.com/images/products/100321038/n0nda_5124.jpg" alt="Gowns">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Festival Special</div>
+        <h1 class="hero-title">Flowing <em>Gowns</em> that Command Attention</h1>
+        <a href="#" class="hero-cta">Browse Gowns →</a>
+      </div>
+    </div>
+    <div class="hero-slide">
+      <img src="https://images.meesho.com/images/products/44764143/yodjg_512.webp" alt="Dresses">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Western Wear</div>
+        <h1 class="hero-title">Bold <em>Dresses</em> for Every Mood</h1>
+        <a href="#" class="hero-cta">Shop Dresses →</a>
+      </div>
+    </div>
+  </div>
+  <button class="hero-arrow prev" onclick="heroNav(-1)">‹</button>
+  <button class="hero-arrow next" onclick="heroNav(1)">›</button>
+  <div class="hero-nav" id="heroDots"></div>
+</div>
+
+<!-- Category Tiles -->
+<div class="cats-section">
+  <div class="cats-grid">
+    <a href="#" class="cat-tile">
+      <img src="https://images.meesho.com/images/products/328784931/qjnqm_512.webp" alt="Sarees">
+      <div class="cat-tile-label">Sarees</div>
+    </a>
+    <a href="#" class="cat-tile">
+      <img src="https://images.meesho.com/images/products/158544963/hvvtv_512.webp" alt="Kurtis">
+      <div class="cat-tile-label">Kurtis</div>
+    </a>
+    <a href="#" class="cat-tile">
+      <img src="https://images.meesho.com/images/products/100321038/n0nda_5124.jpg" alt="Gowns">
+      <div class="cat-tile-label">Long Gowns</div>
+    </a>
+    <a href="#" class="cat-tile">
+      <img src="https://images.meesho.com/images/products/312429141/kvwmw_512.webp" alt="Dress Material">
+      <div class="cat-tile-label">Dress Material</div>
+    </a>
+    <a href="#" class="cat-tile">
+      <img src="https://images.meesho.com/images/products/44764143/yodjg_512.webp" alt="Dresses">
+      <div class="cat-tile-label">Dresses</div>
+    </a>
+    <a href="#" class="cat-tile">
+      <img src="https://images.meesho.com/images/products/44757678/we1xv_512.webp" alt="Tops">
+      <div class="cat-tile-label">Tops & Tunics</div>
+    </a>
+    <a href="#" class="cat-tile">
+      <img src="https://images.meesho.com/images/products/318523374/knavr_512.webp" alt="T-Shirts">
+      <div class="cat-tile-label">T-Shirts</div>
+    </a>
+    <a href="#" class="cat-tile">
+      <img src="https://images.meesho.com/images/products/7201498/14ef8_512.jpg" alt="Bedsheets">
+      <div class="cat-tile-label">Bedsheets</div>
+    </a>
+  </div>
+</div>
+
+<!-- Perks Bar -->
+<div class="perks">
+  <div class="perks-inner">
+    <div class="perk"><span class="perk-icon">🚚</span><div class="perk-text"><strong>Free Shipping</strong><span>On all orders across India</span></div></div>
+    <div class="perk"><span class="perk-icon">💵</span><div class="perk-text"><strong>Cash On Delivery</strong><span>Pay when your order arrives</span></div></div>
+    <div class="perk"><span class="perk-icon">↩️</span><div class="perk-text"><strong>Easy Returns</strong><span>Hassle-free return policy</span></div></div>
+    <div class="perk"><span class="perk-icon">🔒</span><div class="perk-text"><strong>Secure Orders</strong><span>100% safe & trusted</span></div></div>
+  </div>
+</div>
+
+<!-- Main Layout -->
+<div class="main-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span style="color:var(--gold-light);font-size:16px">⚙</span>
+      <h3>Filter & Sort</h3>
+    </div>
+    <div class="sidebar-search">
+      <input type="text" placeholder="Search products…">
+    </div>
+
+    <!-- Category -->
+    <div class="filter-section">
+      <div class="filter-label">Category</div>
+      <ul class="filter-list">
+        <li><a href="#" class="active">All Products</a></li>
+        <li><a href="#">Top-Bottom Set (Coord)</a></li>
+        <li><a href="#">Sarees</a></li>
+        <li><a href="#">Winter Wear</a></li>
+        <li><a href="#">Kurtis</a></li>
+        <li><a href="#">Gowns</a></li>
+        <li><a href="#">Dress Materials</a></li>
+        <li><a href="#">Dresses</a></li>
+        <li><a href="#">Tops / Tunics</a></li>
+        <li><a href="#">Kaftans</a></li>
+        <li><a href="#">Night Suits</a></li>
+        <li><a href="#">Bottoms — Pants, Jeans</a></li>
+        <li><a href="#">T-Shirts</a></li>
+        <li><a href="#">Woman Shirts</a></li>
+        <li><a href="#">Bedsheets / Home Decor</a></li>
+        <li><a href="#">Kurta Sets</a></li>
+        <li><a href="#">Handbags / Purses</a></li>
+      </ul>
+    </div>
+    <div class="filter-divider"></div>
+
+    <!-- Sort -->
+    <div class="filter-section">
+      <div class="filter-label">Sort By</div>
+      <ul class="filter-list">
+        <li><a href="#" class="active">New Arrivals</a></li>
+        <li><a href="#">Popularity</a></li>
+        <li><a href="#">Price — Low to High</a></li>
+        <li><a href="#">Price — High to Low</a></li>
+        <li><a href="#">Alphabetical</a></li>
+      </ul>
+    </div>
+    <div class="filter-divider"></div>
+
+    <!-- Fabric -->
+    <div class="filter-section">
+      <div class="filter-label">Fabric</div>
+      <ul class="filter-list">
+        <li><a href="#" class="active">Any</a></li>
+        <li><a href="#">Cotton</a></li>
+        <li><a href="#">Rayon</a></li>
+        <li><a href="#">Silk</a></li>
+        <li><a href="#">Georgette</a></li>
+        <li><a href="#">Velvet</a></li>
+        <li><a href="#">Satin</a></li>
+        <li><a href="#">Muslin</a></li>
+        <li><a href="#">Polyester / Poly-Mix</a></li>
+        <li><a href="#">Crepe</a></li>
+        <li><a href="#">Denim</a></li>
+      </ul>
+    </div>
+    <div class="filter-divider"></div>
+
+    <!-- Size -->
+    <div class="filter-section">
+      <div class="filter-label">Size</div>
+      <ul class="filter-list">
+        <li><a href="#" class="active">All Sizes</a></li>
+        <li><a href="#">Free Size</a></li>
+        <li><a href="#">XS — Extra Small</a></li>
+        <li><a href="#">S — Small</a></li>
+        <li><a href="#">M — Medium</a></li>
+        <li><a href="#">L — Large</a></li>
+        <li><a href="#">XL</a></li>
+        <li><a href="#">XXL</a></li>
+        <li><a href="#">3XL</a></li>
+        <li><a href="#">4XL</a></li>
+        <li><a href="#">5XL — 10XL</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Products Area -->
+  <div class="products-area">
+    <div class="products-toolbar">
+      <div class="products-title">All Products <span>120+ items</span></div>
+      <select class="sort-select">
+        <option>Sort: New Arrivals</option>
+        <option>Popularity</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+        <option>Alphabetical</option>
+      </select>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+      <!-- Products injected by JS -->
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <a href="#" class="page-btn active">1</a>
+      <a href="#" class="page-btn">2</a>
+      <a href="#" class="page-btn">3</a>
+      <a href="#" class="page-btn">4</a>
+      <a href="#" class="page-btn">5</a>
+      <a href="#" class="page-btn next-btn">Next →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Ad Banners -->
+<div class="ad-banner">
+  <div class="ad-grid">
+    <a href="#" class="ad-card">
+      <img src="https://images.meesho.com/images/products/43777780/zvtbi_512.webp" alt="">
+      <div class="ad-card-overlay">
+        <div class="ad-card-title">Kurta Sets for Women</div>
+        <div class="ad-card-sub">Starting at ₹550 with Free Shipping</div>
+      </div>
+    </a>
+    <a href="#" class="ad-card">
+      <img src="https://images.meesho.com/images/products/393260613/j4tmw_512.webp" alt="">
+      <div class="ad-card-overlay">
+        <div class="ad-card-title">Plus Size Collections</div>
+        <div class="ad-card-sub">Unique styles — Sizes up to 10XL</div>
+      </div>
+    </a>
+    <a href="#" class="ad-card">
+      <img src="https://images.meesho.com/images/products/517264811/thgbx_512.webp" alt="">
+      <div class="ad-card-overlay">
+        <div class="ad-card-title">Festive Gowns</div>
+        <div class="ad-card-sub">Festival edition — Limited collections</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="brand-name">🌸 Sheetal Online Fashion</div>
+      <p>Discover quality women's dress material, Kurtis, Tops, Western & Indian wear, Sarees, Tunics and more — all at affordable prices. Free shipping across India with Cash On Delivery.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">Sarees</a></li>
+        <li><a href="#">Kurtis</a></li>
+        <li><a href="#">Gowns</a></li>
+        <li><a href="#">Dress Materials</a></li>
+        <li><a href="#">Dresses</a></li>
+        <li><a href="#">Tops & Tunics</a></li>
+        <li><a href="#">Bedsheets</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Information</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Return Policy</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="#">WhatsApp Us</a></li>
+        <li><a href="#">International Shipping</a></li>
+        <li><a href="#">Resell & Earn (Meesho)</a></li>
+        <li><a href="#">Amazon Store</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2024 Sheetal Online Fashion. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://api.whatsapp.com/send?phone=919967657951" class="wa-float" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // ─── Hero Carousel ───
+  let heroIdx = 0;
+  const slides = document.querySelectorAll('.hero-slide');
+  const track = document.getElementById('heroTrack');
+  const dotsWrap = document.getElementById('heroDots');
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goHero(i);
+    dotsWrap.appendChild(d);
+  });
+
+  function goHero(n) {
+    heroIdx = (n + slides.length) % slides.length;
+    track.style.transform = `translateX(-${heroIdx * 100}%)`;
+    document.querySelectorAll('.hero-dot').forEach((d, i) => d.classList.toggle('active', i === heroIdx));
+  }
+  function heroNav(dir) { goHero(heroIdx + dir); }
+  setInterval(() => heroNav(1), 5000);
+
+  // ─── Products Data ───
+  const products = [
+    { id: 'EDCBFBADH', img: '432151037/wgchs', name: 'Abhisarika Fashionable Kurtis', price: 595 },
+    { id: 'EDEIEIJHC', img: '434848972/vmkzz', name: 'Abhisarika Fashionable Kurta Set', price: 595 },
+    { id: 'EDEIEIJHE', img: '434848974/felqd', name: 'Abhisarika Fashionable Kurta Set', price: 595 },
+    { id: 'EEACCAEGJ', img: '440220469/tozf1', name: 'Abhisarika Fashionable Kurta Set', price: 650 },
+    { id: 'EEACCAEGI', img: '440220468/e9upm', name: 'Abhisarika Fashionable Kurta Set', price: 650 },
+    { id: 'EEACCAEHA', img: '440220470/6hohf', name: 'Abhisarika Fashionable Kurta Set', price: 595 },
+    { id: 'EEACCAEHB', img: '440220471/ou8we', name: 'Abhisarika Fashionable Kurta Set', price: 650 },
+    { id: 'FBHCGEIBB', img: '517264811/thgbx', name: 'Myra Pretty Women Gowns', price: 650 },
+    { id: 'FBHCGEIBC', img: '517264812/zcbde', name: 'Aradhya Pretty Women Gowns', price: 650 },
+    { id: 'FBHCGEIBD', img: '517264813/rh17x', name: 'Kashvi Graceful Women Gowns', price: 650 },
+    { id: 'BJFEDFBI',  img: '19543518/9099d',  name: 'Charvi Sensational Kurtis', price: 750 },
+    { id: 'ECGJGFJB',  img: '42696591/rsq5k',  name: 'Jivika Superior Women Dupatta Set', price: 695 },
+    { id: 'EDHHHHIA',  img: '43777780/zvtbi',  name: 'Myra Fabulous Women Kurta Sets', price: 550 },
+    { id: 'EHHIHABE',  img: '47787014/slphv',  name: 'Abhisarika Alluring Women Kurta Sets', price: 695 },
+    { id: 'GAFGFBDC',  img: '60565132/w82mg',  name: 'Abhisarika Ensemble Kurtis', price: 750 },
+    { id: 'GAIGHJBF',  img: '60867915/kyhvn',  name: 'Aagyeyi Fashionable Kurtis', price: 750 },
+    { id: 'GCDFIDGJ',  img: '62358369/pdb3j',  name: 'Myra Graceful Kurtis', price: 495 },
+    { id: 'GCDFIDHA',  img: '62358370/zcmjy',  name: 'Aagam Pretty Kurtis', price: 495 },
+    { id: 'GCDFIDHC',  img: '62358372/aot5j',  name: 'Banita Graceful Kurtis', price: 450 },
+    { id: 'GHDIAAAE',  img: '67380004/djbhn',  name: 'Aakarsha Voguish Kurtis', price: 450 },
+    { id: 'GHDIAAAD',  img: '67380003/4qdci',  name: 'Jivika Voguish Kurtis', price: 450 },
+    { id: 'GHDIAAAF',  img: '67380005/qozm9',  name: 'Kashvi Petite Kurtis', price: 450 },
+    { id: 'HACBADFA',  img: '70210350/wjqed',  name: 'Aagam Pretty Kurtis', price: 395 },
+    { id: 'HACBADEJ',  img: '70210349/znlw3',  name: 'Adrika Alluring Kurtis', price: 395 },
+    { id: 'IAHCBFHG',  img: '80721576/tcadv',  name: 'Aagam Fabulous Women Kurta Sets', price: 650 },
+    { id: 'IAIAIICC',  img: '80808822/jhgkq',  name: 'Stylish Kaftans', price: 650 },
+    { id: 'IAIAJIBC',  img: '80809812/p5dhg',  name: 'Charvi Superior Women Dupatta Sets', price: 695 },
+    { id: 'IAIBBAED',  img: '80811043/tvhji',  name: 'Aagyeyi Drishya Women Kurta Sets', price: 650 },
+    { id: 'IIFCHGDG',  img: '88527636/sg3m9',  name: 'Long Kaftans', price: 395 },
+    { id: 'BAEGAGJHA', img: '104606970/nee2c', name: 'Abhisarika Petite Kurtis', price: 450 },
+    { id: 'BAEGAGJGJ', img: '104606969/cdjim', name: 'Abhisarika Drishya Kurtis', price: 450 },
+    { id: 'BAEGAGJGI', img: '104606968/1qnqa', name: 'Banita Refined Kurtis', price: 450 },
+    { id: 'BAJBIDFAB', img: '109183501/0hbru', name: 'Alisha Sensational Kurtis', price: 450 },
+    { id: 'BDGHEAGFG', img: '136740656/h5pux', name: 'Banita Attractive Women Kurta Sets', price: 550 },
+    { id: 'BDGHEAGFF', img: '136740655/zl0b5', name: 'Alisha Voguish Women Kurta Sets', price: 550 },
+    { id: 'DEGDDJCBH', img: '346339217/dna8k', name: 'Pure Cotton Kurtis', price: 395 },
+    { id: 'DDJAJCDFF', img: '339092355/sg1sz', name: 'Kurti Pant Set', price: 650 },
+    { id: 'DDJBBBEFC', img: '339111452/7vb2e', name: 'Cord Set Rayon', price: 650 },
+    { id: 'DJDCGAGBD', img: '393260613/j4tmw', name: 'Big Size Anarkali Gown', price: 795 },
+    { id: 'DJDCGAGBE', img: '393260614/jz0xb', name: 'Big Size Anarkali Gown', price: 795 },
+    { id: 'DJEGHICIB', img: '394678281/hvhzt', name: 'Short Cotton Tops', price: 350 },
+    { id: 'EAHBFEJDF', img: '407154935/jnres', name: 'Cotton Kurti Palazzo Set', price: 850 },
+    { id: 'EBAAEJJBD', img: '410049913/tgesx', name: 'Short Kaftan', price: 395 },
+    { id: 'EBDCGHGEH', img: '413267647/fpdxt', name: 'Big Size Anarkali Kurta', price: 795 },
+    { id: 'ECADAAFCG', img: '420300526/4l9pa', name: 'Plus Size Kurtis', price: 695 },
+    { id: 'ECDCDGIDG', img: '423236836/tcykv', name: 'Big Size Kurta', price: 695 },
+    { id: 'CDIIGCEB',  img: '23886241/uyf18', name: 'Aakarsha Superior Kurtis — Sale', price: 550, badge: 'SALE' },
+    { id: 'CDIIGCEA',  img: '23886240/mekbn', name: 'Aakarsha Superior Kurtis', price: 495 },
+    { id: 'BCHHDIDEJ', img: '127738349/klvba', name: 'JVC Gajari Kurta Set', price: 795 },
+    { id: 'BCHHDIDFC', img: '127738352/pvk3f', name: 'JVC Green Kurta Set', price: 795 },
+    { id: 'BCHHDIDFA', img: '127738350/ljopm', name: 'JVC Pink Kurta Set', price: 795 },
+    { id: 'BCHHDIDFB', img: '127738351/5bece', name: 'JVC Purple Kurta Set', price: 795 },
+    { id: 'BGFFBDBDG', img: '165513136/hhdog', name: 'Trendy Graceful Kurtis', price: 695 },
+    { id: 'BJAFEAGIG', img: '190540686/pk4p9', name: 'Trendy Graceful Kurtis', price: 550 },
+    { id: 'CHGEHGDEI', img: '276476348/di7ff', name: 'Aakarsha Superior Kurtis', price: 650 },
+    { id: 'CHGEHGDEH', img: '276476347/lsai1', name: 'Aakarsha Superior Kurtis', price: 595 },
+    { id: 'EDCBFBADG', img: '432151036/ui2rx', name: 'Abhisarika Fashionable Kurtis', price: 650 },
+  ];
+
+  function waLink(id, name, img, price) {
+    const pid = img.split('/')[0];
+    const txt = encodeURIComponent(`Hi SheetalOnlineFashion, Kindly provide me information/status on this: ${name}| ${id}| ${pid}|Rs. ${price}.Product Link : https://www.sheetalonlinefashion.com/product/${id}`);
+    return `https://api.whatsapp.com/send?text=${txt}&phone=919967657951&app_android=1`;
+  }
+
+  function renderProducts() {
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = products.map(p => {
+      const imgUrl = `https://images.meesho.com/images/products/${p.img}_512.webp`;
+      const ext = p.img.includes('n0nda') ? '.jpg' : '.webp';
+      return `
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <img src="${imgUrl}" alt="${p.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/f3e8f0/7B1D3A?text=Image'">
+            ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
+          </div>
+          <div class="product-body">
+            <div class="product-name">${p.name}</div>
+            <div class="product-price">₹${p.price}<small> /- only</small></div>
+            <div class="product-actions">
+              <a href="https://www.sheetalonlinefashion.com/product/${p.id}" class="btn-buy" target="_blank">Buy Now</a>
+              <a href="${waLink(p.id, p.name, p.img, p.price)}" class="btn-wa" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </a>
             </div>
+          </div>
         </div>
+      `;
+    }).join('');
+  }
 
-    </header>
+  renderProducts();
 
-    <section class="home" id="home">
-        <video class="video-slide active" src="https://videos.pexels.com/video-files/2146396/2146396-uhd_2560_1440_30fps.mp4" autoplay muted loop></video>
-        <video class="video-slide" src="https://videos.pexels.com/video-files/2169880/2169880-uhd_2560_1440_30fps.mp4" autoplay muted loop></video>
-        <video class="video-slide" src="https://videos.pexels.com/video-files/3135811/3135811-hd_1920_1080_24fps.mp4" autoplay muted loop></video>
-        <video class="video-slide" src="https://videos.pexels.com/video-files/3018542/3018542-hd_1920_1080_24fps.mp4" autoplay muted loop></video>
-        <video class="video-slide" src="https://videos.pexels.com/video-files/3052742/3052742-hd_1920_1080_24fps.mp4" autoplay muted loop></video>
-
-
-        <div class="content active">
-            <h1>Mountain<br><span>Trip</span></h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quoslore Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Quisquam, quos Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam, quos</p>
-            <a href="#">Read More</a>
-        </div>
-        <div class="content">
-            <h1>Wonderful<br><span>Island</span></h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quoslore Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Quisquam, quos Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam, quos</p>
-            <a href="#">Read More</a>
-        </div>
-        <div class="content">
-            <h1>Nature<br><span>Trip</span></h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quoslore Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Quisquam, quos Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam, quos</p>
-            <a href="#">Read More</a>
-        </div>
-        <div class="content">
-            <h1>Air<br><span>Ballon</span></h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quoslore Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Quisquam, quos Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam, quos</p>
-            <a href="#">Read More</a>
-        </div>
-        <div class="content">
-            <h1>Road <br><span>Trip</span></h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quoslore Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Quisquam, quos Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam, quos</p>
-            <a href="#">Read More</a>
-        </div>
-
-        <div class="media-icons">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-        </div>
-        <div class="slider-navigation">
-            <div class="nav-btn active"></div>
-            <div class="nav-btn"></div>
-            <div class="nav-btn"></div>
-            <div class="nav-btn"></div>
-            <div class="nav-btn"></div>
-    </section>
-
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <h2>About Our Journey</h2>
-                <p>We are passionate travelers dedicated to creating unforgettable experiences for adventure seekers worldwide. With over a decade of expertise in crafting unique travel experiences, we've helped thousands of travelers discover the world's most breathtaking destinations.</p>
-                <p>Our mission is to connect people with extraordinary places, cultures, and experiences that inspire, educate, and transform. From mountain peaks to ocean depths, we believe every journey should be a story worth telling.</p>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <h3>500+</h3>
-                        <p>Destinations</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>10K+</h3>
-                        <p>Happy Travelers</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>15+</h3>
-                        <p>Years Experience</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>98%</h3>
-                        <p>Satisfaction Rate</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    
-    <section class="explore" id="explore">
-        <h2>Explore Destinations</h2>
-        <div class="destinations">
-            <div class="destination-card">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Mountain Peak">
-                <div class="destination-info">
-                    <h3>Swiss Alps</h3>
-                    <p>Experience the majestic beauty of snow-capped peaks and pristine alpine lakes.</p>
-                </div>
-            </div>
-            <div class="destination-card">
-                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"  alt="Tropical Beach">
-                <div class="destination-info">
-                    <h3>Maldives</h3>
-                    <p>Discover paradise with crystal-clear waters and overwater bungalows.</p>
-                </div>
-            </div>
-            <div class="destination-card">
-                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Forest Trail">
-                <div class="destination-info">
-                    <h3>Amazon Rainforest</h3>
-                    <p>Explore the world's largest tropical rainforest and its incredible biodiversity.</p>
-                </div>
-            </div>
-            <div class="destination-card">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Desert Landscape">
-                <div class="destination-info">
-                    <h3>Sahara Desert</h3>
-                    <p>Experience the vastness and beauty of the world's largest hot desert.</p>
-                </div>
-            </div>
-            <div class="destination-card">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Ocean View">
-                <div class="destination-info">
-                    <h3>Hawaii</h3>
-                    <p>Discover volcanic islands with stunning beaches and rich cultural heritage.</p>
-                </div>
-            </div>
-            <div class="destination-card">
-                <img src="https://content.r9cdn.net/rimg/dimg/05/83/8b1d829d-freereg-705-1679f736141.jpg?crop=true&width=1366&height=768&xhint=2595&yhint=1360" alt="Mountain Lake">
-                <div class="destination-info">
-                    <h3>Patagonia</h3>
-                    <p>Adventure through dramatic landscapes of glaciers, mountains, and wilderness.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="gallery" id="gallery">
-        <h2>Travel Gallery</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Scenic Landscape">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" height="250px" alt="Adventure Journey">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Mountain Trail">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmF0dXJlfGVufDB8fDB8fHww" alt="Nature">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Taj Mahal">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=1120&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Paris">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?q=80&w=1167&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Italy">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Road Trip">
-            </div>
-        </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-info">
-                <h2>Get In Touch</h2>
-                <p>Ready to embark on your next adventure? Contact us to start planning your dream journey. Our expert travel consultants are here to help you create unforgettable memories.</p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>123 Travel Street, Adventure City, AC 12345</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+1 (555) 123-4567</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>travel@gmail.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Mon - Fri: 9:00 AM - 6:00 PM</span>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-form">
-                <h3>Send us a Message</h3>
-                <form>
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Subject" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <script src="script.js"></script>
+  // Filter clicks
+  document.querySelectorAll('.filter-list a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const list = a.closest('.filter-list');
+      list.querySelectorAll('a').forEach(x => x.classList.remove('active'));
+      a.classList.add('active');
+    });
+  });
+</script>
 </body>
-
 </html>
